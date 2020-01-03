@@ -1,0 +1,154 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Product Hunter Look Alike Backend",
+    "description": "The backend module of the Product Hunter Look Alike responsible for create, read, update and delete products",
+    "version": "0.1.0"
+  },
+  "basePath": "/api",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "description": "Return a list of products",
+        "responses": {
+          "200": {
+            "description": "Returns a JSON array of products",
+            "schema": {
+              "$ref": "#/components/ProductList"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a product",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "schema:": "#/components/CreateProduct"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the created product",
+            "schema": {
+              "$ref": "#/components/Product"
+            }
+          }
+        }
+      }
+    },
+    "/products/{productId}": {
+      "get": {
+        "description": "Return a product with the corresponding id",
+        "parameters": {
+          "name": "productId",
+          "in": "path",
+          "required": "true",
+          "description": "Id of a product",
+          "type": "string"
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the required product",
+            "schema": {
+              "$ref": "#/components/Product"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "ProductList": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "example": "jsjd394j3k2las"
+        },
+        "title": {
+          "type": "string",
+          "required": true,
+          "example": "Coca Cola"
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "example": "A soda with coca flavour"
+        },
+        "url": {
+          "type": "string",
+          "required": true,
+          "example": "https://github.com/mrgr4v3s/javascript-fullstack-template"
+        },
+        "createdAt": {
+          "type": "date",
+          "required": false,
+          "example": "12/12/2158"
+        }
+      }
+    },
+    "CreateProduct": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true,
+          "example": "Coca Cola"
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "example": "A soda with coca flavour"
+        },
+        "url": {
+          "type": "string",
+          "required": true,
+          "example": "https://github.com/mrgr4v3s/javascript-fullstack-template"
+        }
+      }
+    },
+    "Product": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "required": false,
+          "example": "jsjd394j3k2las"
+        },
+        "title": {
+          "type": "string",
+          "required": true,
+          "example": "Coca Cola"
+        },
+        "description": {
+          "type": "string",
+          "required": true,
+          "example": "A soda with coca flavour"
+        },
+        "url": {
+          "type": "string",
+          "required": true,
+          "example": "https://github.com/mrgr4v3s/javascript-fullstack-template"
+        },
+        "createdAt": {
+          "type": "date",
+          "required": false,
+          "example": "12/12/2158"
+        }
+      }
+    }
+  }
+}

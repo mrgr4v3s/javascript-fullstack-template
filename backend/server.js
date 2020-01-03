@@ -3,6 +3,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const requireDir = require('require-dir');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-conf');
+
 requireDir('./src/models');
 const routes = require('./src/routes');
 
@@ -13,6 +16,7 @@ app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/producthunterlookalike', { useNewUrlParser: true });
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', routes);
 
 const port = 3001;
