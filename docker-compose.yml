@@ -1,0 +1,48 @@
+version: "3.7"
+
+services:
+  frontend:
+    container_name: product-hunter-lookalike-frontend
+    restart: always
+
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    ports:
+      - "80:80"
+
+    networks:
+      - frontend-backend
+
+  backend:
+    container_name: product-hunter-lookalike-backend
+    restart: always
+
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    ports:
+      - "3001:3001"
+
+    depends_on:
+      - mongodb
+
+    networks:
+      - backend-mongo
+      - frontend-backend
+
+  mongodb:
+    container_name: mongodb
+    image: mongo
+
+    networks:
+      - backend-mongo
+
+    ports:
+      - "27017:27017"
+
+networks:
+  backend-mongo:
+  frontend-backend:
